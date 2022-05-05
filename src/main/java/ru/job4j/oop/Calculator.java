@@ -21,7 +21,7 @@ public class Calculator {
     }
 
     public int sumAllOperation(int n) {
-return sum(n) + multiply(n) + minus(n) + divide(n);
+        return sum(n) + multiply(n) + minus(n) + divide(n);
     }
 
     public static void main(String[] args) {
