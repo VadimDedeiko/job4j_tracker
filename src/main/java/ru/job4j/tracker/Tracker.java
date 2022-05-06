@@ -59,12 +59,15 @@ public class Tracker {
     }
 
     public boolean replace(int id, Item item) {
-        boolean rsl = false;
         int index = indexOf(id);
+        boolean rsl = index != -1;
         int n = items[index].getId();
-        items[index] = item;
-        items[index].setId(n);
-        return item.getId() == id;
+        if (rsl) {
+            items[index] = item;
+            items[index].setId(n);
+            return item.getId() == id;
+        }
+        return rsl;
     }
 
     public boolean delete(int id) {
