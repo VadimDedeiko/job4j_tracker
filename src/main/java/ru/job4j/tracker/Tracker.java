@@ -15,13 +15,16 @@ public class Tracker {
 
     private int indexOf(int id) {
         int rsl = -1;
-        for (int index = 0; index < size; index++) {
-            if (items[index].getId() == id) {
-                rsl = index;
-                break;
+        try {
+            for (int index = 0; index < size; index++) {
+                if (items[index].getId() == id) {
+                    rsl = index;
+                    break;
+                }
             }
+        } finally {
+            return rsl;
         }
-        return rsl;
     }
 
     public Item findById(int id) {
@@ -62,5 +65,20 @@ public class Tracker {
         items[index] = item;
         items[index].setId(n);
         return item.getId() == id;
+    }
+
+    public boolean delete(int id) {
+        boolean rsl = false;
+        int index = indexOf(id);
+        if (index == -1) {
+            return rsl;
+        }
+        System.arraycopy(items, index + 1, items, index, size - index - 1);
+        items[items.length - 1] = null;
+        size--;
+        if (items[items.length - 1] == null) {
+            return true;
+        }
+        return rsl;
     }
 }
