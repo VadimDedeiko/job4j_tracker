@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+ package ru.job4j.tracker;
 
 import java.util.Arrays;
 
@@ -55,7 +55,7 @@ public class Tracker {
         return rsl;
     }
 
-     public boolean delete(int id) {
+    public boolean delete(int id) {
         boolean rsl = false;
         int index = indexOf(id);
         if (index != -1) {
