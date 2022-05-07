@@ -38,7 +38,7 @@ public class Tracker {
         Item[] copyitems = new Item[size];
         for (int i = 0; i < size; i++) {
             if (key.equals(items[i].getName())) {
-                copyitems[i] = items[i];
+                copyitems[count] = items[i];
                 count++;
             }
         }
@@ -51,7 +51,6 @@ public class Tracker {
         if (rsl) {
             items[index] = item;
             item.setId(id);
-            return item.getId() == id;
         }
         return rsl;
     }
@@ -61,7 +60,7 @@ public class Tracker {
         int index = indexOf(id);
         if (index != -1) {
             System.arraycopy(items, index + 1, items, index, size - index - 1);
-            items[items.length - 1] = null;
+            items[size - 1] = null;
             size--;
             rsl = true;
         }
