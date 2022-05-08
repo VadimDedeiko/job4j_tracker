@@ -11,7 +11,7 @@ public class Student {
     }
 
     public static void main(String[] args) {
-        Student petya = new Student();
+         Student petya = new Student();
         System.out.println("Петя сыграй на баяне и три раза пропой");
         petya.song();
         petya.song();
