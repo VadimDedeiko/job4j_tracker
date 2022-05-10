@@ -3,6 +3,7 @@ package ru.job4j.search;
 import java.util.LinkedList;
 
 public class PriorityQueue {
+
     private LinkedList<Task> tasks = new LinkedList<>();
 
     /**
