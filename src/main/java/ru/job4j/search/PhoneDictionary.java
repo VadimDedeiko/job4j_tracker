@@ -23,6 +23,6 @@ public class PhoneDictionary {
                 result.add(person);
             }
         }
-        return result.isEmpty() ? null : result;
+        return result;
     }
 }
