@@ -5,14 +5,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Tracker {
-    //    private final Item[] items = new Item[100];
     List<Item> items = new ArrayList<>();
     private int ids = 1;
     private int size = 0;
 
     public Item add(Item item) {
         item.setId(ids++);
-//        items[size++] = item;
         items.add(item);
         return item;
     }
@@ -34,13 +32,10 @@ public class Tracker {
     }
 
     public List<Item> findAll() {
-//        return Arrays.copyOf(items, size);
         return items;
     }
 
     public List<Item> findByName(String key) {
-//        int count = 0;
-//        Item[] copyitems = new Item[size];
         List<Item> copyitems = new ArrayList<>();
         for (Item item : items) {
             if (key.equals(item.getName())) {
@@ -54,7 +49,6 @@ public class Tracker {
         int index = indexOf(id);
         boolean rsl = index != -1;
         if (rsl) {
-//            items[index] = item;
             items.set(index, item);
             item.setId(id);
         }
