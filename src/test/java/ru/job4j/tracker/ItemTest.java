@@ -22,4 +22,14 @@ public class ItemTest {
                 new Item("Vadim"));
         assertEquals(expected, items);
     }
+
+    @Test
+    public void compareToDescenting() {
+        List<Item> items = Arrays.asList(new Item("Sergey"),
+                new Item("Anton"), new Item("Vadim"));
+        Collections.sort(items, Collections.reverseOrder());
+        List<Item> expected = Arrays.asList(new Item("Vadim"), new Item("Sergey"),
+                new Item("Anton"));
+        assertEquals(expected, items);
+    }
 }
