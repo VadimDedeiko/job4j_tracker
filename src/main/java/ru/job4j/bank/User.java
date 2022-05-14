@@ -1,7 +1,6 @@
 package ru.job4j.bank;
 
 import java.util.Objects;
-
 /**
  * Класс описывает объект User (Пользователя),
  * который имеет пасспорт и имя (поля passport, username)

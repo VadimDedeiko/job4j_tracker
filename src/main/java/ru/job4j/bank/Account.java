@@ -7,6 +7,7 @@ import java.util.Objects;
  */
 
 public class Account {
+
     /**
      * Поле класса реквизиты банка принимает строковый параметр
      */
