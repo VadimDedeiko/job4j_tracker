@@ -53,7 +53,7 @@ public class JobTest {
         Comparator<Job> comparison = new JobDescByNameAsc().thenComparing(new JobDescByPriorAsc());
         int rsl = comparison.compare(
                 new Job("Impl task", 0),
-                new Job("Fix bug", 1)
+                new Job("Impl task", 1)
         );
         assertThat(rsl, greaterThan(0));
     }
