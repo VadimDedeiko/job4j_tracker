@@ -47,13 +47,13 @@ public class BankServiceTest {
     @Test
     public void transferMoneyTrue() {
         User user = new User("3434", "Petr Arsentev");
-        User destuser = new User("3434", "Petr Arsentev");
+        User destuser = new User("620309", "Vadim Dedeyko");
         BankService bank = new BankService();
         bank.addUser(user);
         bank.addUser(destuser);
         bank.addAccount(user.getPassport(), new Account("5546", 150D));
         bank.addAccount(destuser.getPassport(), new Account("113", 50D));
-        bank.transferMoney(user.getPassport(), "5546", destuser.getPassport(), "113", 150D);
-        assertTrue(bank.transferMoney(user.getPassport(), "5546", destuser.getPassport(), "113", 100D));
+        Boolean trans = bank.transferMoney(user.getPassport(), "5546", destuser.getPassport(), "113", 150D);
+        assertTrue(trans);
     }
 }

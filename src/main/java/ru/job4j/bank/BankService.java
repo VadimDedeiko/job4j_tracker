@@ -5,12 +5,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Класс описывает главный сервис Банка
+ *
+ * @author Vadim Dedeiko
+ * @version 1.0
+ */
+
 public class BankService {
+    /**
+     * Содержит список всех пользователей и счетов в банке
+     */
+
     private final Map<User, List<Account>> users = new HashMap<>();
+
+    /**
+     * Метод добавлет пользователя в список
+     */
 
     public void addUser(User user) {
         users.putIfAbsent(user, new ArrayList<Account>());
     }
+
+    /**
+     * Метод добавлет пользователя в список
+     *
+     * @param passport номер паспорта в строковом представлении
+     * @param account  аккаунт клиента банка
+     */
 
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
@@ -22,6 +44,13 @@ public class BankService {
         }
     }
 
+    /**
+     * Метод ищет пользователя по номеру паспорта
+     *
+     * @param passport номер паспорта в строковом представлении
+     * @return возвращает Пользователя
+     */
+
     public User findByPassport(String passport) {
         User usr = null;
         for (User user : users.keySet()) {
@@ -32,6 +61,14 @@ public class BankService {
         }
         return usr;
     }
+
+    /**
+     * Метод ищет пользователя по номеру паспорта и реквизитам аккаунта клиента банка
+     *
+     * @param passport  номер паспорта в строковом представлении
+     * @param requisite номер счета в строковом представлении
+     * @return возвращает акканут клиента банка
+     */
 
     public Account findByRequisite(String passport, String requisite) {
         Account accountUsr = null;
@@ -48,11 +85,23 @@ public class BankService {
         return accountUsr;
     }
 
+    /**
+     * Метод совершает транзакцию средств по пасспорту и номера счета клиента банка
+     *
+     * @param srcPassport   номер паспорта пользователя в строковом представлении от которого переводятся средства
+     * @param srcRequisite  номер счета в строковом представлении от которого переводятся средства
+     * @param destPassport  номер паспорта в строковом представлении кому переводятся средства
+     * @param destRequisite номер счета в строковом представлении кому переводятся средства
+     * @param amount        сумма денег для перевода
+     * @return возвращает {@code true}, если счета найдены и хватает денег на счете и {@code false} если счета не найдены
+     * и денег не хватает на счету.
+     */
+
     public boolean transferMoney(String srcPassport, String srcRequisite,
                                  String destPassport, String destRequisite, double amount) {
         Account srcAccount = findByRequisite(srcPassport, srcRequisite);
         Account destAccount = findByRequisite(destPassport, destRequisite);
-        if (srcAccount != null && destAccount != null && amount >= srcAccount.getBalance()) {
+        if (srcAccount != null && destAccount != null && srcAccount.getBalance() >= amount) {
             srcAccount.setBalance(srcAccount.getBalance() - amount);
             destAccount.setBalance(destAccount.getBalance() + amount);
             return true;
