@@ -18,8 +18,8 @@ public class ItemTest {
         List<Item> items = Arrays.asList(new Item("Sergey"),
                 new Item("Anton"), new Item("Vadim"));
         Collections.sort(items, new ItemAscByName());
-        List<Item> expected = Arrays.asList(new Item("Vadim"), new Item("Sergey"),
-                new Item("Anton"));
+        List<Item> expected = Arrays.asList(new Item("Anton"), new Item("Sergey"),
+                new Item("Vadim"));
         assertEquals(expected, items);
     }
 
