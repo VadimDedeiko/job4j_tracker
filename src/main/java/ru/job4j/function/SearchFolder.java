@@ -7,8 +7,6 @@ import java.util.function.Predicate;
 
 public class SearchFolder {
     public static List<Folder> filter(List<Folder> list, Predicate<Folder> pred) {
-        Comparator<String> cmpText = (left, right) -> left.compareTo(right);
-        Comparator<String> cmpDescSize = (left, right) -> right.compareTo(left);
         List<Folder> lst = new ArrayList<>();
         for (Folder f : list) {
             if (pred.test(f)) {
