@@ -9,7 +9,7 @@ import java.util.function.*;
 public class FunctionalInterfaces {
     public static void main(String[] args) {
         Map<Integer, String> map = new HashMap<>();
-        BiConsumer<Integer, String> biCon = (s, s1) -> map.put(s, s1);
+        BiConsumer<Integer, String> biCon = (s, e) -> map.put(s, e);
         biCon.accept(1, "one");
         biCon.accept(2, "two");
         biCon.accept(3, "three");
@@ -24,23 +24,13 @@ public class FunctionalInterfaces {
                 System.out.println("key: " + i + " value: " + map.get(i));
             }
         }
-        /*
-            Заменить создание ArrayList из значений Map на Supplier, объявлен ниже, требуется его реализовать.
-         */
         Supplier<List<String>> sup = () -> new ArrayList<>(map.values());
         List<String> strings = sup.get();
 
-        Consumer<String> con = s -> s.toUpperCase();
-        Function<String, String> func = s1 -> s1.toUpperCase();
+        Consumer<String> con = s -> System.out.println(s);
+        Function<String, String> func = s -> s.toUpperCase();
         for (String s : strings) {
-            /*
-                Заменить вывод строк на применение Consumer
-                Заменить преобразование строк к строкам в верхнем регистре с помощью Function
-                Необходимое объявлено выше, требуется их реализовать.
-            */
-            System.out.println(func.apply(s));
-            con.accept(s.toUpperCase());
+            con.accept(func.apply(s));
         }
-
     }
 }
