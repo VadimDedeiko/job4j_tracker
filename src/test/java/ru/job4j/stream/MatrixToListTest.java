@@ -8,6 +8,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class MatrixToListTest {
+
     @Test
     public void whenInputSquareMatrix() {
         Integer[][] matrix = {
