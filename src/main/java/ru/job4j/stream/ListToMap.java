@@ -11,7 +11,7 @@ public class ListToMap {
         Map<String, Student> map = new LinkedHashMap<>();
         return list.stream()
                 .collect(
-                        Collectors.toMap(k -> k.getSurname(),
+                        Collectors.toMap(Student::getSurname,
                                 v -> v, (existing, replacement) -> existing)
                 );
     }
