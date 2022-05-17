@@ -9,11 +9,10 @@ public class ListToMap {
 
     public static Map<String, Student> convert(List<Student> list) {
         Map<String, Student> map = new LinkedHashMap<>();
-        map = list.stream()
+        return list.stream()
                 .collect(
                         Collectors.toMap(k -> k.getSurname(),
-                        v -> v, (existing, replacement) -> existing)
+                                v -> v, (existing, replacement) -> existing)
                 );
-        return map;
     }
 }
