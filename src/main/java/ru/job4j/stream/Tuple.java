@@ -1,9 +1,8 @@
 package ru.job4j.stream;
 
-import java.util.Comparator;
 import java.util.Objects;
 
-public class Tuple implements Comparable<Tuple> {
+public class Tuple {
     private String name;
     private double score;
 
@@ -30,8 +29,7 @@ public class Tuple implements Comparable<Tuple> {
         return Objects.hash(name, score);
     }
 
-    @Override
-    public int compareTo(Tuple o) {
-        return Double.compare(score, o.score);
+    public double getScore() {
+        return score;
     }
 }
