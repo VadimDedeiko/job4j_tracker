@@ -9,6 +9,10 @@ import java.util.Properties;
 public class SqlTracker implements Store, AutoCloseable {
     private Connection cn;
 
+    public SqlTracker(Connection cn) {
+        this.cn = cn;
+    }
+
     public void init() {
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
@@ -53,10 +57,10 @@ public class SqlTracker implements Store, AutoCloseable {
     public boolean replace(int id, Item item) {
         boolean rsl = false;
         try (PreparedStatement ps =
-                     cn.prepareStatement("update items set name='?' where id=?;")) {
+                     cn.prepareStatement("update items set name=? where id = ?;")) {
             ps.setString(1, item.getName());
             ps.setInt(2, id);
-            rsl = ps.execute();
+            rsl = ps.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -98,7 +102,7 @@ public class SqlTracker implements Store, AutoCloseable {
     public List<Item> findByName(String key) {
         List<Item> list = new ArrayList<>();
         try (PreparedStatement ps =
-                     cn.prepareStatement("SELECT * FROM items where name='?';")) {
+                     cn.prepareStatement("SELECT * FROM items where name=?;")) {
             ps.setString(1, key);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
@@ -118,7 +122,7 @@ public class SqlTracker implements Store, AutoCloseable {
         Item item = null;
         List<Item> list = new ArrayList<>();
         try (PreparedStatement ps =
-                     cn.prepareStatement("select * from items where id='?';")) {
+                     cn.prepareStatement("select * from items where id=?;")) {
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
             while (resultSet.next()) {
