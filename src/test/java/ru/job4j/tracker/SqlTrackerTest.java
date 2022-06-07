@@ -80,7 +80,7 @@ public class SqlTrackerTest {
     }
 
     @Test
-    public void whenFindAll() {
+     public void whenFindAll() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item1 = tracker.add(new Item("item"));
         Item item2 = tracker.add(new Item("item2"));
