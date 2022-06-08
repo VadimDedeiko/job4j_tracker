@@ -14,7 +14,6 @@ public class SqlTracker implements Store, AutoCloseable {
     }
 
     public void init() {
-
         try (InputStream in = SqlTracker.class.getClassLoader().getResourceAsStream("app.properties")) {
             Properties config = new Properties();
             config.load(in);
@@ -84,14 +83,15 @@ public class SqlTracker implements Store, AutoCloseable {
 
     @Override
     public List<Item> findAll() {
-        Item item = null;
         List<Item> list = new ArrayList<>();
         try (PreparedStatement ps =
                      cn.prepareStatement("SELECT * FROM items;")) {
             ResultSet resultSet = ps.executeQuery();
-            setItem(resultSet, item, list);
+            while (resultSet.next()) {
+                list.add(setItem(resultSet));
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return list;
     }
@@ -99,14 +99,15 @@ public class SqlTracker implements Store, AutoCloseable {
     @Override
     public List<Item> findByName(String key) {
         List<Item> list = new ArrayList<>();
-        Item item = null;
         try (PreparedStatement ps =
                      cn.prepareStatement("SELECT * FROM items where name=?;")) {
             ps.setString(1, key);
             ResultSet resultSet = ps.executeQuery();
-            item = setItem(resultSet, item, list);
+            while (resultSet.next()) {
+                list.add(setItem(resultSet));
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return list;
     }
@@ -119,21 +120,19 @@ public class SqlTracker implements Store, AutoCloseable {
                      cn.prepareStatement("select * from items where id=?;")) {
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
-            item = setItem(resultSet, item, list);
+            if (resultSet.next()) {
+                item = setItem(resultSet);
+                list.add(item);
+            }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return item;
     }
 
-    private Item setItem(ResultSet resultSet, Item item, List<Item> list) throws SQLException {
-        while (resultSet.next()) {
-            item = new Item(resultSet.getInt("id"),
-                    resultSet.getString("name"));
-            var ldt = resultSet.getTimestamp(3).toLocalDateTime();
-            item.setCreated(ldt);
-            list.add(item);
-        }
-        return item;
+    private Item setItem(ResultSet resultSet) throws SQLException {
+        return new Item(resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("created").toLocalDateTime());
     }
 }
