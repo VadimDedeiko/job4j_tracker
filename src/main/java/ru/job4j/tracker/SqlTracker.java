@@ -115,14 +115,12 @@ public class SqlTracker implements Store, AutoCloseable {
     @Override
     public Item findById(int id) {
         Item item = null;
-        List<Item> list = new ArrayList<>();
         try (PreparedStatement ps =
                      cn.prepareStatement("select * from items where id=?;")) {
             ps.setInt(1, id);
             ResultSet resultSet = ps.executeQuery();
             if (resultSet.next()) {
                 item = setItem(resultSet);
-                list.add(item);
             }
         } catch (SQLException e) {
             e.printStackTrace();
