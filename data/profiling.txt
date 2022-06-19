@@ -1,0 +1,9 @@
+Анализ проведен с помощью jmap. Анализ показал сколько каких объектов было создано
+  1:      12939808      414279568  [B (java.base@18.0.1)
+   2:      12938952      310534848  java.lang.String (java.base@18.0.1)
+   3:      12928855      310292520  java.time.LocalDateTime (java.base@18.0.1)
+   4:      12928824      310291776  java.time.LocalDate (java.base@18.0.1)
+   5:      12928797      310291128  java.time.LocalTime (java.base@18.0.1)
+   6:      12928771      310290504  ru.job4j.tracker.Item
+
+На 192 запуске GC память переполнилась с исключением Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
