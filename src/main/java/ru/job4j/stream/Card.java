@@ -1,7 +1,5 @@
 package ru.job4j.stream;
 
-import java.util.stream.Stream;
-
 public class Card {
     private Suit suit;
     private Value value;
