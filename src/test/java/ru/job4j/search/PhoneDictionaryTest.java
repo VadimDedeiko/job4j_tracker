@@ -2,13 +2,8 @@ package ru.job4j.search;
 
 import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Test;
-
-import java.util.ArrayList;
-
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 public class PhoneDictionaryTest {
     @Test
