@@ -1,5 +1,4 @@
 package ru.job4j.tracker;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
