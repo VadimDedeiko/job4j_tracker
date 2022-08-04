@@ -19,7 +19,7 @@ public class HbmRun {
             Session session = sf.openSession();
             session.beginTransaction();
 
-            Car car = Car.of("Toyota", new Timestamp(1459510232000L));
+            Car car = Car.of("Toyota", new Timestamp(1459510232000L), "Sidorov Ivan");
             session.save(car);
 
             session.getTransaction().commit();

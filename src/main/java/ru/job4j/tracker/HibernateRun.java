@@ -5,6 +5,8 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class HibernateRun {
@@ -13,17 +15,20 @@ public class HibernateRun {
                 .configure().build();
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Item item = create(new Item("Learn Hibernate"), sf);
-            System.out.println(item);
-            item.setName("Learn Hibernate 5.");
-            update(item, sf);
-            System.out.println(item);
-            Item rsl = findById(item.getId(), sf);
-            System.out.println(rsl);
+            Item item1 = create(new Item("Learn Hibernate1", "Description1",
+                    Timestamp.valueOf(LocalDateTime.now())), sf);
+            Item item2 = create(new Item("Learn Hibernate2", "Description2",
+                    Timestamp.valueOf(LocalDateTime.now().plusHours(2))), sf);
+            System.out.println("Результат метода create - " + item1);
+            item1.setName("Learn Hibernate 5.");
+            update(item1, sf);
+            System.out.println("Результат метода update - " + item1);
+            Item rsl = findById(item1.getId(), sf);
+            System.out.println("Результат метода findById - " + rsl);
             delete(rsl.getId(), sf);
             List<Item> list = findAll(sf);
             for (Item it : list) {
-                System.out.println(it);
+                System.out.println("Результат метода findAll - " + it);
             }
         }  catch (Exception e) {
             e.printStackTrace();

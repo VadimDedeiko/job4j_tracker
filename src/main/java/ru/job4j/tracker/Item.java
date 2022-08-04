@@ -1,6 +1,7 @@
 package ru.job4j.tracker;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -12,11 +13,18 @@ public class Item implements Comparable<Item> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    private String description;
+    private Timestamp tsCreated;
     private LocalDateTime created = LocalDateTime.now();
-
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
 
     public Item() {
+    }
+
+    public Item(String name, String description, Timestamp tsCreated) {
+        this.name = name;
+        this.description = description;
+        this.tsCreated = tsCreated;
     }
 
     public Item(String name) {
