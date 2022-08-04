@@ -14,17 +14,16 @@ public class Item implements Comparable<Item> {
     private int id;
     private String name;
     private String description;
-    private Timestamp tsCreated;
     private LocalDateTime created = LocalDateTime.now();
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
 
     public Item() {
     }
 
-    public Item(String name, String description, Timestamp tsCreated) {
+    public Item(String name, String description, LocalDateTime created) {
         this.name = name;
         this.description = description;
-        this.tsCreated = tsCreated;
+        this.created = created;
     }
 
     public Item(String name) {
@@ -66,6 +65,14 @@ public class Item implements Comparable<Item> {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
         return "Item{"
@@ -90,7 +97,8 @@ public class Item implements Comparable<Item> {
         }
         Item item = (Item) o;
         return id == item.id && Objects.equals(name, item.name) && Objects.equals(
-                created.withNano(0), item.created.withNano(0));
+                created.withNano(0),
+                item.created.withNano(0));
     }
 
     @Override

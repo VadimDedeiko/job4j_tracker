@@ -16,9 +16,9 @@ public class HibernateRun {
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
             Item item1 = create(new Item("Learn Hibernate1", "Description1",
-                    Timestamp.valueOf(LocalDateTime.now())), sf);
+                    LocalDateTime.now()), sf);
             Item item2 = create(new Item("Learn Hibernate2", "Description2",
-                    Timestamp.valueOf(LocalDateTime.now().plusHours(2))), sf);
+                    LocalDateTime.now().plusHours(2)), sf);
             System.out.println("Результат метода create - " + item1);
             item1.setName("Learn Hibernate 5.");
             update(item1, sf);
