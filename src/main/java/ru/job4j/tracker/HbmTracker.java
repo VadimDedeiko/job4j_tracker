@@ -48,7 +48,7 @@ public class HbmTracker implements Store, AutoCloseable {
     @Override
     public List<Item> findAll() {
         Session session = sf.openSession();
-        List rslList = session.createQuery("from Item").getResultList();
+        List<Item> rslList = session.createQuery("from Item").getResultList();
         session.close();
         return rslList;
     }
@@ -56,7 +56,7 @@ public class HbmTracker implements Store, AutoCloseable {
     @Override
     public List<Item> findByName(String name) {
         Session session = sf.openSession();
-        List rslList = session.createQuery("from Item i where i.name = name").getResultList();
+        List<Item> rslList = session.createQuery("from Item i where i.name = name").getResultList();
         session.close();
         return rslList;
     }
