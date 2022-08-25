@@ -84,15 +84,7 @@ public class SqlTracker implements Store, AutoCloseable {
     @Override
     public List<Item> findAll() {
         List<Item> list = new ArrayList<>();
-        try (PreparedStatement ps =
-                     cn.prepareStatement("SELECT * FROM items;")) {
-            ResultSet resultSet = ps.executeQuery();
-            while (resultSet.next()) {
-                list.add(setItem(resultSet));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        observeList(list::add);
         return list;
     }
 
@@ -132,5 +124,17 @@ public class SqlTracker implements Store, AutoCloseable {
         return new Item(resultSet.getInt("id"),
                 resultSet.getString("name"),
                 resultSet.getTimestamp("created").toLocalDateTime());
+    }
+
+    private void observeList(Observe<Item> observe) {
+        try (PreparedStatement ps =
+                     cn.prepareStatement("SELECT * FROM items;")) {
+            ResultSet resultSet = ps.executeQuery();
+            while (resultSet.next()) {
+                observe.receive(setItem(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
