@@ -18,5 +18,7 @@
         <property name="hibernate.hbm2ddl.auto">create</property>
 
         <mapping class="ru.job4j.tracker.Item" />
+        <mapping class="ru.job4j.toone.Role" />
+        <mapping class="ru.job4j.toone.User" />
     </session-factory>
 </hibernate-configuration>
