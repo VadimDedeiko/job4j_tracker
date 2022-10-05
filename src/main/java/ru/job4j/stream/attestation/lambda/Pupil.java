@@ -1,4 +1,4 @@
-package ru.job4j.stream;
+package ru.job4j.stream.attestation.lambda;
 
 import java.util.List;
 

@@ -3,6 +3,11 @@ package ru.job4j.stream;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 import org.junit.Test;
+import ru.job4j.stream.attestation.lambda.Analyze;
+import ru.job4j.stream.attestation.lambda.Pupil;
+import ru.job4j.stream.attestation.lambda.Subject;
+import ru.job4j.stream.attestation.lambda.Tuple;
+
 import java.util.List;
 
 public class AnalyzeTest {
