@@ -15,16 +15,14 @@ public class Item implements Comparable<Item> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private String description;
     private LocalDateTime created = LocalDateTime.now();
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
 
     public Item() {
     }
 
-    public Item(String name, String description, LocalDateTime created) {
+    public Item(String name, LocalDateTime created) {
         this.name = name;
-        this.description = description;
         this.created = created;
     }
 
@@ -73,6 +71,6 @@ public class Item implements Comparable<Item> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, created);
+        return Objects.hash(id, name, created);
     }
 }

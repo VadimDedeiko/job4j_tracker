@@ -35,7 +35,7 @@ public class StartUI {
     public static void main(String[] args) {
         Output output = new ConsoleOutput();
         Input input = new ValidateInput(output, new ConsoleInput());
-        Store tracker = new MemTracker();
+        Store tracker = new HbmTracker();
         List<UserAction> actions = new ArrayList<>(Arrays.asList(
                 new CreateAction(output),
                 new FindAllAction(output),

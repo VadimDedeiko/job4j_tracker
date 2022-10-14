@@ -5,7 +5,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,9 +14,9 @@ public class HibernateRun {
                 .configure().build();
         try {
             SessionFactory sf = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-            Item item1 = create(new Item("Learn Hibernate1", "Description1",
+            Item item1 = create(new Item(1, "Description1",
                     LocalDateTime.now()), sf);
-            Item item2 = create(new Item("Learn Hibernate2", "Description2",
+            Item item2 = create(new Item(2, "Description2",
                     LocalDateTime.now().plusHours(2)), sf);
             System.out.println("Результат метода create - " + item1);
             item1.setName("Learn Hibernate 5.");

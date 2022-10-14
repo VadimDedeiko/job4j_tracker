@@ -55,8 +55,8 @@ public class HbmTrackerTest {
             tracker.add(item1);
             tracker.add(item2);
             tracker.add(item3);
-            List<Item> expected = List.of(item1, item2, item3);
-            assertEquals(tracker.findByName(item1.getName()), expected);
+            List<Item> expected = List.of(item1, item2);
+            assertEquals(expected, tracker.findByName(item1.getName()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -69,6 +69,21 @@ public class HbmTrackerTest {
             tracker.add(item);
             tracker.delete(item.getId());
             assertEquals(tracker.findAll(), new ArrayList<>());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void whenSaveItemSAndDeleteFindAllThenMustBeOne() {
+        try (HbmTracker tracker = new HbmTracker()) {
+            Item item = new Item("item");
+            Item item2 = new Item("item2");
+            tracker.add(item);
+            tracker.add(item2);
+            tracker.delete(item.getId());
+            List<Item> all = tracker.findAll();
+            assertEquals(all, List.of(item2));
         } catch (Exception e) {
             e.printStackTrace();
         }
