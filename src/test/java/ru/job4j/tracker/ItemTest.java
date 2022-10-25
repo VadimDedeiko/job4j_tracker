@@ -1,9 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.utils.ItemAscByName;
 
-import javax.swing.plaf.basic.BasicDirectoryModel;
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;

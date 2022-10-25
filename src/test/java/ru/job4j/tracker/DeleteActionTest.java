@@ -1,10 +1,13 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
+import ru.job4j.tracker.actions.DeleteAction;
+import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.output.Output;
+import ru.job4j.tracker.output.StubOutput;
+import ru.job4j.tracker.persistence.MemTracker;
+import ru.job4j.tracker.persistence.Store;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;

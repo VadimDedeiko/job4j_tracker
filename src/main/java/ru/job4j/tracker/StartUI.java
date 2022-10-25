@@ -1,14 +1,31 @@
 package ru.job4j.tracker;
 
 
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.kafka.annotation.KafkaListener;
+import ru.job4j.tracker.actions.*;
+import ru.job4j.tracker.input.ConsoleInput;
+import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.input.ValidateInput;
+import ru.job4j.tracker.output.ConsoleOutput;
+import ru.job4j.tracker.output.Output;
+import ru.job4j.tracker.persistence.HbmTracker;
+import ru.job4j.tracker.persistence.Store;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 public class StartUI {
     private final Output out;
 
     public StartUI(Output out) {
         this.out = out;
+    }
+
+    @KafkaListener(topics = {"tracker-stats"})
+    public void listenStatistic(ConsumerRecord<Integer, String> input) {
+        System.out.printf("\n%s%n", input.value());
     }
 
     public void init(Input input, Store tracker, List<UserAction> actions) {

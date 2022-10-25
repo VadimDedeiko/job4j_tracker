@@ -1,6 +1,14 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import ru.job4j.tracker.actions.*;
+import ru.job4j.tracker.input.Input;
+import ru.job4j.tracker.input.StubInput;
+import ru.job4j.tracker.model.Item;
+import ru.job4j.tracker.output.Output;
+import ru.job4j.tracker.output.StubOutput;
+import ru.job4j.tracker.persistence.MemTracker;
+import ru.job4j.tracker.persistence.Store;
 
 import java.util.ArrayList;
 import java.util.Arrays;
